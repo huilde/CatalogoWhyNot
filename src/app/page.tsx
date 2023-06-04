@@ -1,7 +1,12 @@
 "use client";
 import React from "react";
-import signUp from "../firebase/signup";
+import signIn from "../firebase/signin";
 import { useRouter } from "next/navigation";
+import Card from "@mui/material/Card";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+
+import { StyledInitialPage } from "./page.style";
 
 function Page() {
   const [email, setEmail] = React.useState("");
@@ -11,7 +16,7 @@ function Page() {
   const handleForm = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    const { result, error } = await signUp(email, password);
+    const { result, error } = await signIn(email, password);
 
     if (error) {
       return console.log(error);
@@ -22,36 +27,40 @@ function Page() {
     return router.push("/admin");
   };
   return (
-    <div className="wrapper">
-      <div className="form-wrapper">
-        <h1 className="mt-60 mb-30">Sign up</h1>
-        <form onSubmit={handleForm} className="form">
-          <label htmlFor="email">
-            <p>Email</p>
-            <input
+    <StyledInitialPage>
+      <div className="content" style={{ margin: "auto" }}>
+        <div className="form-wrapper">
+          <h1 className="title">Entre no catálogo agora :)</h1>
+          <form onSubmit={handleForm} className="form">
+            <TextField
+              className="input"
               onChange={(e) => setEmail(e.target.value)}
               required
               type="email"
               name="email"
               id="email"
               placeholder="example@mail.com"
+              label="E-mail"
+              variant="outlined"
             />
-          </label>
-          <label htmlFor="password">
-            <p>Password</p>
-            <input
+            <TextField
+              className="input"
               onChange={(e) => setPassword(e.target.value)}
               required
               type="password"
               name="password"
               id="password"
               placeholder="password"
+              label="Senha"
+              variant="outlined"
             />
-          </label>
-          <button type="submit">Sign up</button>
-        </form>
+            <Button variant="contained" type="submit">
+              Login
+            </Button>
+          </form>
+        </div>
       </div>
-    </div>
+    </StyledInitialPage>
   );
 }
 
