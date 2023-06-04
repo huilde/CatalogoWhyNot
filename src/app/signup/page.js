@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import signUp from "../firebase/signup";
+import signUp from "@/firebase/auth/signup";
 import { useRouter } from "next/navigation";
 
 function Page() {
@@ -8,7 +8,7 @@ function Page() {
   const [password, setPassword] = React.useState("");
   const router = useRouter();
 
-  const handleForm = async (event: { preventDefault: () => void }) => {
+  const handleForm = async (event) => {
     event.preventDefault();
 
     const { result, error } = await signUp(email, password);
