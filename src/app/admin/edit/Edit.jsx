@@ -12,6 +12,7 @@ import { Modal, Upload } from "antd";
 
 import { StyledEdit } from "./Edit.style";
 import { addData } from "../../../firebase/addData";
+import { getData } from "../../../firebase/getData";
 
 const Edit = () => {
   const getBase64 = (file) =>
@@ -36,8 +37,10 @@ const Edit = () => {
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
+      console.log(file.preview, "oie");
     }
     setPreviewImage(file.url || file.preview);
+    const byteCharacters = atob(file.url || file.preview);
     setPreviewOpen(true);
     setPreviewTitle(
       file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
@@ -67,11 +70,13 @@ const Edit = () => {
       imagens: fileList,
       descrição: productDescription,
     };
-    console.log({ productName });
-    console.log({ productPrice });
-    console.log({ productType });
-    console.log({ productDescription });
-    console.log({ productCategory });
+    console.log(fileList);
+    addData("produtos", "dNHwzbQrCuTzsAejCcGF", data);
+  };
+
+  const handleCancelar = async () => {
+    const teste = await getData("produtos", "dNHwzbQrCuTzsAejCcGF");
+    console.log(teste);
   };
 
   return (
@@ -174,7 +179,11 @@ const Edit = () => {
           </div>
 
           <div>
-            <Button variant="contained" className="cancel">
+            <Button
+              variant="contained"
+              className="cancel"
+              onClick={handleCancelar}
+            >
               Cancelar
             </Button>
             <Button
