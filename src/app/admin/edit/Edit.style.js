@@ -26,6 +26,29 @@ const StyledEdit = styled.div`
   .flex {
     display: flex;
     gap: 16px;
+    margin: 16px 0;
+  }
+
+  .cancel {
+    gap: 8px;
+
+    width: 144px;
+    height: 40px;
+    background: #e8def8;
+    border-radius: 100px;
+  }
+  .save {
+    gap: 8px;
+
+    width: 144px;
+    height: 40px;
+    background: #6750a4;
+    border-radius: 100px;
+  }
+
+  .save:hover,
+  .cancel:hover {
+    background: red;
   }
 `;
 
