@@ -50,6 +50,14 @@ const StyledEdit = styled.div`
   .cancel:hover {
     background: red;
   }
+
+  .footer {
+    margin-top: 250px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
 `;
 
 export { StyledEdit };

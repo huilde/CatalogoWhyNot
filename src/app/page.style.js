@@ -20,7 +20,6 @@ const StyledInitialPage = styled.div`
     font-weight: 400;
     font-size: 22px;
     line-height: 28px;
-    /* identical to box height, or 127% */
 
     color: #000000;
     margin-bottom: 12px;

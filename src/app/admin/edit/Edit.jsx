@@ -61,7 +61,7 @@ const Edit = () => {
     </div>
   );
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const data = {
       nome: productName,
       preço: parseInt(productPrice),
@@ -70,12 +70,13 @@ const Edit = () => {
       imagens: fileList,
       descrição: productDescription,
     };
-    console.log(fileList);
-    addData("produtos", "dNHwzbQrCuTzsAejCcGF", data);
+    console.log(data);
+    const teste = await addData("produtos", productCategory, data);
+    console.log(teste);
   };
 
   const handleCancelar = async () => {
-    const teste = await getData("produtos", "dNHwzbQrCuTzsAejCcGF");
+    const teste = await getData("produtos", productCategory);
     console.log(teste);
   };
 
@@ -178,7 +179,7 @@ const Edit = () => {
             </Modal>
           </div>
 
-          <div>
+          <div className="footer">
             <Button
               variant="contained"
               className="cancel"
